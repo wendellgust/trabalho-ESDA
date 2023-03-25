@@ -112,8 +112,8 @@ void Patient::setSex(char sex)
 void Patient::setDischarged(bool discharged)
 {
   //Verifique que os valores e valido seria q eles existem
-  if(discharged != NULL){
-    this->discharged=discharged;
+  if(discharged != false){
+    this->discharged=true;
   }
 
 }
@@ -155,23 +155,19 @@ size_t PatientManagement::getSize() const
 
 int PatientManagement::getSizeDay(time_t ymd) const
 {
-  /*
-  //VAria um pouco feito com gpt
   int comparacao;
   for(auto auxi = listPatient.begin();auxi!=listPatient.end();auxi++){
     for(auto it = (*auxi)->getVentrance().begin();it!=(*auxi)->getVentrance().end();it++){
-
       if(*it==ymd){//Esse argumento não esta certo
         comparacao++;
+        break;
       }
       else{
         return -1;
       }
     }
   }
-  return comparacao;
-  */
- return 25;
+  return comparacao/2;
 }
 
 int PatientManagement::patientInsert(Patient *p)
