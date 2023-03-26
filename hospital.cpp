@@ -112,10 +112,9 @@ void Patient::setSex(char sex)
 void Patient::setDischarged(bool discharged)
 {
   //Verifique que os valores e valido seria q eles existem
-  if(discharged != NULL){
-    this->discharged=discharged;
+   if(getDischarged() != discharged){
+    this->discharged=true;
   }
-
 }
 
 void Patient::addVentrance(time_t ymd)
@@ -154,24 +153,26 @@ size_t PatientManagement::getSize() const
 }
 
 int PatientManagement::getSizeDay(time_t ymd) const
-{
-  /*
-  //VAria um pouco feito com gpt
-  int comparacao;
-  for(auto auxi = listPatient.begin();auxi!=listPatient.end();auxi++){
-    for(auto it = (*auxi)->getVentrance().begin();it!=(*auxi)->getVentrance().end();it++){
-
-      if(*it==ymd){//Esse argumento não esta certo
+int comparacao = 0;
+for (auto auxi = listPatient.begin(); auxi != listPatient.end(); auxi++) {
+  bool found = false;
+  for (auto it = (*auxi)->getVentrance().begin(); it != (*auxi)->getVentrance().end(); it++) {
+      if (*it == ymd) {
         comparacao++;
-      }
-      else{
-        return -1;
+        found = true;
+        break;
       }
     }
+    if (!found) {
+      continue;
+    }
   }
-  return comparacao;
-  */
- return 25;
+  if(compracao == 0){
+    return -1;
+  }
+  else{
+    return comparacao/2;
+  }
 }
 
 int PatientManagement::patientInsert(Patient *p)
@@ -376,7 +377,6 @@ list<Patient *> *PatientManagement::searchEmergency(short int emergency)
   //}
     // procurar todos os paciente para um determinado tipo de emergency, ou seja e para descobrir todos que estao la em algum tipo de emergia, 
     // corre a lista tudo e em cada um dele 1 coisa a ver e se ele já tiver alta, se tiver passa a frente, se não tiver alta ver o vetor emergencia ver o ultimo etipo de emergia e se for igual acresenta o pacinete em uma nova lista
-    return NULL;
 }
 EmergencyQueues::EmergencyQueues()
 {
